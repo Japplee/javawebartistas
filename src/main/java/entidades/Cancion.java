@@ -16,4 +16,14 @@ public class Cancion {
     public Cancion() {
         
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getDuracion() {
+        return duracion;
+    }
+    
+    
 }

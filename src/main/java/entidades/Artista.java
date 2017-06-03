@@ -13,11 +13,15 @@ import java.util.ArrayList;
  */
 public class Artista {
     private String nombre;
-    private String estilo;
-    ArrayList<Cancion> canciones = new ArrayList<Cancion>();
+    private Estilo estilo;
+    private ArrayList<Cancion> canciones;
    
     public Artista() {
-        
+        this.canciones = new ArrayList<>();
+    }
+    
+    public void agregarCancion(Cancion cancion) {
+        this.canciones.add(cancion);
     }
 
     public String getNombre() {
@@ -28,15 +32,12 @@ public class Artista {
         this.nombre = nombre;
     }
 
-    public String getEstilo() {
+    public Estilo getEstilo() {
         return estilo;
     }
 
-    public void setEstilo(String estilo) {
+    public void setEstilo(Estilo estilo) {
         this.estilo = estilo;
     }
     
-    public void agregarCancion(Cancion cancion) {
-        this.canciones.add(cancion);
-    }
 }
