@@ -8,9 +8,17 @@
         <servlet-name>ControladorArtista</servlet-name>
         <servlet-class>controladores.ControladorArtista</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControladorCancion</servlet-name>
+        <servlet-class>controladores.ControladorCancion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ControladorArtista</servlet-name>
         <url-pattern>/Artistas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControladorCancion</servlet-name>
+        <url-pattern>/Canciones</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
