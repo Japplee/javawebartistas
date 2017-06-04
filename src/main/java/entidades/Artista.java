@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Artista {
     private String nombre;
     private Estilo estilo;
-    private ArrayList<Cancion> canciones;
+    public ArrayList<Cancion> canciones;
    
     public Artista() {
         this.canciones = new ArrayList<>();
@@ -22,6 +22,11 @@ public class Artista {
     
     public void agregarCancion(Cancion cancion) {
         this.canciones.add(cancion);
+    }
+    
+    public void editarCancion(int index, String nombre, Double duracion) {
+        this.canciones.get(index).setNombre(nombre);
+        this.canciones.get(index).setDuracion(duracion);
     }
 
     public String getNombre() {

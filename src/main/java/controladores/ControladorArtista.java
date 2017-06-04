@@ -9,11 +9,14 @@ import entidades.Artista;
 import entidades.Estilo;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -21,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ControladorArtista extends HttpServlet {
     public ArrayList<Artista> artistas = new ArrayList<>();
+    List<Estilo> estilos = Arrays.asList(Estilo.values());
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,6 +37,8 @@ public class ControladorArtista extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        artistas = (ArrayList<Artista>) session.getAttribute("artistasArray");
         //Valor del input nombre
         String inNombre = "";
         //Valor del input estilo
@@ -82,6 +88,10 @@ public class ControladorArtista extends HttpServlet {
         request.setAttribute("inAction", inAction);
         request.setAttribute("indexEdit", indexEdit);
         request.setAttribute("artistas", artistas);
+        request.setAttribute("estilos", estilos);
+        
+        session.setAttribute("artistasArray", artistas);
+        
         RequestDispatcher rd = request.getRequestDispatcher("vista-artista.jsp");
         rd.forward(request, response);
     }

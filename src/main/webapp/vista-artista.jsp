@@ -92,16 +92,15 @@
                 <div class="in">
                     <label>Estilo</label>
                     <select name="estilo">
-                        <option value="ROCK">Rock</option>
-                        <option value="POP">Pop</option>
-                        <option value="FOLK">Folk</option>
+                        <c:forEach items="${estilos}" var="estilo">
+                            <option value=${estilo}>${estilo}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <input type="hidden" name="postAction" value="${inAction}">
                 <input type="hidden" name="indexEdit" value="${indexEdit}">
                 <input id="btn" type="submit" value="${inAction}">
             </form>
-   
             <table>
                 <thead>
                     <tr>
@@ -118,7 +117,7 @@
                             <th>
                                 <a href="Artistas?action=edit&id=${loop.index}">Editar</a>
                                 <a href="Artistas?action=delete&id=${loop.index}">Borrar</a>
-                                <a href="#">Canciones</a>
+                                <a href="Canciones?id=${loop.index}">Canciones</a>
                             </th>  
                         </tr>
                     </c:forEach>

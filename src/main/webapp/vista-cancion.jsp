@@ -93,19 +93,19 @@
             <form action="Canciones" method="POST">
                 <div class="in">
                     <label>Artista</label>
-                    <input type="text" name="artista" value="" disabled><br>
+                    <input type="text" name="artista" value="${inNombre}" disabled><br>
                 </div>
                 <div class="in">
                     <label>Cancion</label>
-                    <input type="text" name="cancion" value=""><br>
+                    <input type="text" name="cancion" value="${inCancion}"><br>
                 </div>
                 <div class="in">
                     <label>Duracion</label>
-                    <input type="text" name="duracion" value=""><br>
+                    <input type="text" name="duracion" value="${inDuracion}"><br>
                 </div>
                 <div id="btns">
                     <input class="btn" type="submit" value="Cancelar">
-                    <input class="btn" type="submit" value="Guardar">
+                    <input class="btn" type="submit" value=${inAction}>
                 </div>
                 
             </form>
@@ -119,12 +119,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <th>nombre canción</th>
-                    <th>01:30</th>
-                    <th>
-                        <a href="#">Editar</a>
-                        <a href="#">Borrar</a>
-                    </th>
+                    <c:forEach items="${canciones}" var="cancion" varStatus="loop">
+                        <th>${cancion.nombre}</th>
+                        <th>${cancion.duracion}</th>
+                        <th>
+                            <a href="Canciones?action=edit">Editar</a>
+                            <a href="Canciones?action=delete">Borrar</a>
+                        </th>
+                    </c:forEach>
                 </tbody>
             </table>
              <input class="btn" type="submit" value="Volver">
