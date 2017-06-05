@@ -133,7 +133,7 @@
                     </c:forEach>
                 </tbody>
             </table>
-             <input class="btn" type="submit" value="Volver">
+             <a href="Artistas">Volver</a>
         </div>
     </body>
 </html>
