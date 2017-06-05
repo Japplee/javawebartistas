@@ -38,7 +38,7 @@ public class ControladorArtista extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        artistas = (ArrayList<Artista>) session.getAttribute("artistasArray");
+        //artistas = (ArrayList<Artista>) session.getAttribute("artistasArray");
         //Valor del input nombre
         String inNombre = "";
         //Valor del input estilo

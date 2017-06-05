@@ -24,6 +24,7 @@ import javax.servlet.http.HttpSession;
 public class ControladorCancion extends HttpServlet {
 
     public ArrayList<Artista> artistas = new ArrayList<>();
+    private int id;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +38,23 @@ public class ControladorCancion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        System.out.println(request.getParameter("id"));
         artistas = (ArrayList<Artista>) session.getAttribute("artistasArray");
-        int id = Integer.parseInt(request.getParameter("id"));
+        if(request.getParameter("id") != null) {
+            id = Integer.parseInt(request.getParameter("id"));   
+        }
         String inNombre = artistas.get(id).getNombre();
         String inCancion = "";
         Double inDuracion = 0.0;
         String inAction = "Guardar";
+        String indexEdit = "";
+        
         if(request.getMethod().equals("POST")) {
             //Editar cancion
             if(request.getParameter("postAction").equals("Editar")) {
-              int indexCancion = 0;
                 String nombreCancion = request.getParameter("cancion");
                 Double duracion = Double.parseDouble(request.getParameter("duracion"));
-                artistas.get(id).editarCancion(indexCancion, nombreCancion, duracion);     
+                artistas.get(id).editarCancion(Integer.parseInt(request.getParameter("indexEdit")), nombreCancion, duracion);     
             //Agregar cancion
             }else { 
                 String nombre = request.getParameter("nombre");
@@ -71,12 +76,15 @@ public class ControladorCancion extends HttpServlet {
                 inCancion = artistas.get(id).canciones.get(idCancion).getNombre();
                 inDuracion = artistas.get(id).canciones.get(idCancion).getDuracion();
                 inAction = "Editar";
+                indexEdit = request.getParameter("idcancion");
             }
         }
         request.setAttribute("inNombre", inNombre);
         request.setAttribute("inCancion", inCancion);
         request.setAttribute("inDuracion", inDuracion);
+        request.setAttribute("indexEdit", indexEdit);
         request.setAttribute("inAction", inAction);
+        request.setAttribute("canciones", artistas.get(id).canciones);
         
         RequestDispatcher rd = request.getRequestDispatcher("vista-cancion.jsp");
         rd.forward(request, response);

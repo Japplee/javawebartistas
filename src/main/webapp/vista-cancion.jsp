@@ -104,7 +104,9 @@
                     <input type="text" name="duracion" value="${inDuracion}"><br>
                 </div>
                 <div id="btns">
-                    <input class="btn" type="submit" value="Cancelar">
+                    <input type="hidden" name="indexEdit" value="${indexEdit}">
+                    <input type="hidden" name="postAction" value="${inAction}">
+                    <!--<input class="btn" type="submit" value="Cancelar">-->
                     <input class="btn" type="submit" value=${inAction}>
                 </div>
                 
@@ -120,12 +122,14 @@
                 </thead>
                 <tbody>
                     <c:forEach items="${canciones}" var="cancion" varStatus="loop">
-                        <th>${cancion.nombre}</th>
-                        <th>${cancion.duracion}</th>
-                        <th>
-                            <a href="Canciones?action=edit">Editar</a>
-                            <a href="Canciones?action=delete">Borrar</a>
-                        </th>
+                        <tr>
+                            <th>${cancion.nombre}</th>
+                            <th>${cancion.duracion}</th>
+                            <th>
+                                <a href="Canciones?action=edit&idcancion=${loop.index}">Editar</a>
+                                <a href="Canciones?action=delete&idcancion=${loop.index}">Borrar</a>
+                            </th>
+                        <tr>
                     </c:forEach>
                 </tbody>
             </table>
